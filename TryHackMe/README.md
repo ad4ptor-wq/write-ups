@@ -4,7 +4,7 @@
  My Cybersecurity Write-ups
 
 Hi there  
-I’m Alex, learning penetration testing and documenting my progress here.  
+I’m Alexei, learning penetration testing and documenting my progress here.  
 This repository contains my CTF challenges, and lab write-ups.  
 
  Structure
