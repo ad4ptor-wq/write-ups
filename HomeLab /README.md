@@ -93,11 +93,6 @@ Now, let's configure the DHCP and establish a scope. DHCP's primary function is 
 
 To illustrate, consider a scenario like a library offering Wi-Fi access. If patrons typically spend around 2 hours inside, it wouldn't be practical to lease an IP address for 8 days. This would tie up the IP address unnecessarily. In such a case, it's advisable to set the lease duration to under 4 hours and allocate a broader range. However, for a virtual environment like ours, where usage is temporary, the lease duration isn't crucial
 ![vmware_aMfRJWlQfa](https://github.com/user-attachments/assets/1e3a12ff-4dd1-4a09-86ef-51418ba07ac9)
-![vmware_UxjYHBvyXg](https://github.com/user-attachments/assets/652b3fac-1a56-417a-b591-956aafcdfb9f)
-
-
-
-
 
 The next step is to establish a new Virtual Machine, which will function as a user within the domain. I designate this machine with the name "CLIENT-1."
 <img width="1228" height="889" alt="vmware_bglfyrQY7q" src="https://github.com/user-attachments/assets/b5b814c5-02b6-43e1-8d69-cf419070fa79" />
@@ -105,7 +100,9 @@ I adjust the network adapter settings to disable NAT and restrict internet acces
 <img width="759" height="734" alt="vmware_lRZ8sd6v6f" src="https://github.com/user-attachments/assets/ecd23a08-bc2c-4ae9-b1fb-4d4299e76e63" />
 Following the setup of a distinct virtual machine to simulate an employee logging into the domain, I streamline the process by renaming the computer to CLIENT-1 and selecting the option to join the VirtualLab.local domain. As part of this step, I'm prompted to provide login credentials, and I opt to utilize the Administrator account that I established previously
 ![vmware_Jo7P4RElQb](https://github.com/user-attachments/assets/bd5f839e-3ff8-4191-a95c-769d28fe0644)
-
+Add new User
+![vmware_UxjYHBvyXg](https://github.com/user-attachments/assets/1d1a0332-2b7f-4070-a3fc-1b857d74fe4e)
+![vmware_6CiwbJgI6q](https://github.com/user-attachments/assets/21d594ce-b887-47d4-bc42-a57aac163865)
 
 
 
