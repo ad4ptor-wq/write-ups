@@ -13,6 +13,8 @@ Microsoft Windows 10-(https://www.microsoft.com/es-es/software-download/windows1
 You will need to download the files above beforehand
 
 
+## 🔧 Step‑by‑Step Configuration
+
 ### 1. Create Virtual Machines in VMware Workstation
 
 #### Server (DC)
@@ -24,8 +26,16 @@ You will need to download the files above beforehand
 - **Customise Hardware**:
   - Memory: 2 GB
   - Processors: 2 cores
-  - Network Adapter: NAT (rename to "External")
-  - **Add** a second Network Adapter → Custom (VMnet0) – rename to "Internal"
-  - Remove unnecessary devices if needed.
-- **Finish** the wizard.
-- <img width="1426" height="752" alt="vmware_rg0QDm7xrB" src="https://github.com/user-attachments/assets/c05e827b-67c6-4782-a068-97006e8855d0" />
+ 
+
+![vmware_NDya99UaD2](https://github.com/user-attachments/assets/430726d3-87a7-4043-8956-2afda7c6f274)
+
+
+
+#### Client (CLIENT-1)
+Repeat the same process, but:
+- OS: **Windows 10** or **Windows 11**.
+- Hardware: 2 vCPU, 2 GB RAM, 20 GB disk.
+- Network Adapter: **Custom (VMnet0)** only.
+- Name: `Windows 10 Client` (or similar).
+
