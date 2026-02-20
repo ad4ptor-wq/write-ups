@@ -9,5 +9,5 @@ This project not only showcases my technical expertise in IT infrastructure mana
 
 Virtualization Software: VMware Workstation Player-https://access.broadcom.com/default/ui/v1/signin/
 Microsoft Windows Server 2022-https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022
-Microsoft Windows 11 Enterprise-https://www.microsoft.com/en-in/evalcenter/download-windows-11-enterprise
+Microsoft Windows 10-(https://www.microsoft.com/es-es/software-download/windows10)
 You will need to download the files above beforehand
