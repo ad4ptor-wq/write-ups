@@ -36,6 +36,5 @@ You will need to download the files above beforehand
 Repeat the same process, but:
 - OS: **Windows 10** or **Windows 11**.
 - Hardware: 2 vCPU, 2 GB RAM, 20 GB disk.
-- Network Adapter: **Custom (VMnet0)** only.
 - Name: `Windows 10 Client` (or similar).
 
