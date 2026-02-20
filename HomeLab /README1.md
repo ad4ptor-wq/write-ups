@@ -136,11 +136,11 @@ After promotion, the server restarts. Upon logging back in, the administrator ac
 #### 5.3 Create a Dedicated Domain Admin Account
 Instead of using the built‑in Administrator account, create a dedicated domain admin account for daily administration.
 
-![Creating domain admin account](https://github.com/user-attachments/assets/93a406b9-53a4-467d-9806-be6b54338d70)
+![Creating domain admin account](https://github.com/user-attachments/assets/ab4a0048-bd76-4878-8a15-48bef186dac5)
 
 After creation, add this new user to the **Domain Admins** security group using Active Directory Users and Computers. Then log out and log in with the new domain admin credentials.
 
-![Elevating to admin](https://github.com/user-attachments/assets/c8903ece-a155-4f93-9324-72c6077b453e)
+![Elevating to admin](https://github.com/user-attachments/assets/29724c9c-ef15-4d10-8d0c-f236814093a6)
 
 ---
 
