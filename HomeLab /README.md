@@ -37,4 +37,7 @@ Repeat the same process, but:
 - OS: **Windows 10** or **Windows 11**.
 - Hardware: 2 vCPU, 2 GB RAM, 20 GB disk.
 - Name: `Windows 10 Client` (or similar).
+---
 
+
+To accommodate my Domain Controller on the Virtual Machine, I require two network adapters. Firstly, a NAT adapter utilizing my home router's IP address to facilitate external connectivity, and secondly, an Internal Network Adapter (VMnet0) to enable communication with other Virtual Machines. Please consult the diagram provided earlier for reference
