@@ -131,12 +131,12 @@ Once the role is installed, promote the server to a Domain Controller and create
 
 After promotion, the server restarts. Upon logging back in, the administrator account will show the domain prefix (e.g., **VIRTUALLAB\Administrator**), confirming successful domain creation.
 
-![Domain created](https://github.com/user-attachments/assets/73a4d330-b671-48b8-8c6d-728640efd2c8)
+https://github.com/user-attachments/assets/73a4d330-b671-48b8-8c6d-728640efd2c8
 
 #### 5.3 Create a Dedicated Domain Admin Account
 Instead of using the built‑in Administrator account, create a dedicated domain admin account for daily administration.
 
-![Creating domain admin account](https://github.com/user-attachments/assets/ab4a0048-bd76-4878-8a15-48bef186dac5)
+https://github.com/user-attachments/assets/ab4a0048-bd76-4878-8a15-48bef186dac5
 
 After creation, add this new user to the **Domain Admins** security group using Active Directory Users and Computers. Then log out and log in with the new domain admin credentials.
 
