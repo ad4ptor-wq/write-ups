@@ -211,8 +211,8 @@ Through this hands‑on project, I successfully designed and implemented a fully
 - NAT/RAS to provide internet access to internal clients.
 - A Windows 10 client joined to the domain, demonstrating real‑world authentication and resource access.
 
-This project demonstrates practical skills in **system administration**, **networking**, **Active Directory management**, and **virtualization**. It reflects my ability to plan, deploy, and maintain enterprise‑level IT services in a controlled environment, preparing me for real‑world challenges in IT support and infrastructure administration.
+
 
 ---
 
-*For any questions or further details, please feel free to reach out.*
+
