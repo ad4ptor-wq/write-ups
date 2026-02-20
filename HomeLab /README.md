@@ -41,3 +41,22 @@ Repeat the same process, but:
 ### Windows Server 2022 settings
 
 To accommodate my Domain Controller on the Virtual Machine, I require two network adapters. Firstly, a NAT adapter utilizing my home router's IP address to facilitate external connectivity, and secondly, an Internal Network Adapter (VMnet0) to enable communication with other Virtual Machines. Please consult the diagram provided earlier for reference
+![vmware_pE5WJMZyNi](https://github.com/user-attachments/assets/2b6bafa1-6d1f-4b02-a671-6f1b8e6ee532)
+---
+### 2. Install Operating Systems
+
+#### Windows Server 2022
+- Boot the VM, select language and keyboard layout.
+- Click **Install now**.
+- Choose **Windows Server 2022 Standard Evaluation (Desktop Experience)**.
+- Accept the licence terms and select **Custom: Install Windows only (advanced)**.
+- Select the single disk and proceed.
+- After reboot, set a password for the built‑in **Administrator** account.
+
+![vmware_uJveWdrZGG](https://github.com/user-attachments/assets/2989496f-b310-4ed2-a02e-71b7b3094ed7)
+
+
+#### Client
+- Install Windows 10/11 normally, using a local account during setup (do not join a domain yet). Name the computer **CLIENT-1**.
+
+
