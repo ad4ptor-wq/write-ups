@@ -240,33 +240,44 @@ Using Active Directory Users and Computers, I created an **IT** OU to organize r
 Using the Group Policy Management Console (GPMC), I created the following GPOs and linked them to the appropriate OUs:
 
 - **Password Policy** – Defines domain password complexity, length, and lockout settings (linked to the domain).
+![vmware_eqCffIJkX7](https://github.com/user-attachments/assets/333bb1ce-2dec-4eeb-8589-d69d947e7935)
+
 - **Account Lockout Policy** – Configures account lockout thresholds and duration (linked to the domain).
+![vmware_K5enpTXfq1](https://github.com/user-attachments/assets/08eb010e-27e0-458e-9733-ac01cf7c3ebf)
+
 - **Disable USB Devices** – Computer configuration to block USB storage access (linked to the **Computers** OU).
+![vmware_NCJ2tRoZnK](https://github.com/user-attachments/assets/fb06d668-6bb4-40ec-a1fc-3c605585510a)
+
 - **Drive Mapping** – User configuration to map network drives automatically (linked to the **Users** OU).
+![vmware_qJjFa0oPb3](https://github.com/user-attachments/assets/b032b615-86e7-42d2-ab90-1f71ededbb0b)
+
 - **Desktop Wallpaper Policy** – User configuration to set a corporate desktop background (linked to the **Users** OU).
+![vmware_aQBR2zmjIS](https://github.com/user-attachments/assets/ff8c925a-c4b3-49d4-afc6-2c6e4569c0e7)
+
 - **Restrict Control Panel** – User configuration to limit access to Control Panel settings (linked to the **Users** OU).
+![vmware_Z8IHip446w](https://github.com/user-attachments/assets/f0a7a788-c04e-4514-a60e-bd869e6ac804)
+
+
 
 Below are screenshots of the GPMC showing the created GPOs and their links.
+<img width="750" height="522" alt="vmware_UOFjOsxW3e" src="https://github.com/user-attachments/assets/4969407e-df9d-419b-ae3a-08c309be2c0c" />
 
-![GPO list - 1](https://github.com/user-attachments/assets/vmware_K5enpTXfq1.gif)
-![GPO list - 2](https://github.com/user-attachments/assets/vmware_NCJ2tRoZnK.gif)
-![GPO list - 3](https://github.com/user-attachments/assets/vmware_Z8IHip446w.gif)
-![GPO list - 4](https://github.com/user-attachments/assets/vmware_aQBR2zmjIS.gif)
-![GPO list - 5](https://github.com/user-attachments/assets/vmware_qJjFa0oPb3.gif)
-![GPO list - 6](https://github.com/user-attachments/assets/vmware_UOFjOsxW3e.png)
+
 
 #### 10.3 Verifying GPO Application with `gpresult`
 After linking the GPOs and forcing a Group Policy update (`gpupdate /force`) on the client, I used the `gpresult` command to verify which policies were applied.
 
 **Computer Configuration** (run as administrator on CLIENT-1):  
 `gpresult /r /scope:computer` shows that the computer receives the **Default Domain Policy**, **Password Policy**, **Disable USB Devices**, and **Account Lockout Policy**.
+<img width="1024" height="768" alt="vmware_jBqYExPml3" src="https://github.com/user-attachments/assets/3cb97f65-4b80-4192-a109-d3667b6aa23b" />
 
-![gpresult computer](https://github.com/user-attachments/assets/vmware_jBqYExPml3.png)
+
 
 **User Configuration** (run as the domain user Ivan-V):  
 `gpresult /r` shows that the user receives **Drive Mapping**, **Desktop Wallpaper Policy**, and **Restrict Control Panel** as intended.
+<img width="1024" height="768" alt="vmware_9nhphHxpER" src="https://github.com/user-attachments/assets/996049bd-8135-40d7-a166-6a896829818d" />
 
-![gpresult user](https://github.com/user-attachments/assets/vmware_9nhphHxpER.png)
+
 
 These results confirm that the GPOs are correctly filtered and applied based on the OU structure and security group membership.
 
