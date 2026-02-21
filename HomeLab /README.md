@@ -18,6 +18,8 @@ The project not only showcases my technical expertise in IT infrastructure manag
   - [6. Configure Remote Access (RAS/NAT)](#6-configure-remote-access-rasnat)
   - [7. Install and Configure DHCP Server](#7-install-and-configure-dhcp-server)
   - [8. Deploy and Configure Client Machine (CLIENT-1)](#8-deploy-and-configure-client-machine-client-1)
+  - [9. Verification and Testing](#9-verification-and-testing)
+  - [10. Implementing Group Policy Objects (GPOs)](#10-implementing-group-policy-objects-gpos)
 - [Conclusion](#conclusion)
 
 ---
@@ -135,19 +137,11 @@ After promotion, the server restarts. Upon logging back in, the administrator ac
 #### 5.3 Create a Dedicated Domain Admin Account
 Instead of using the built‑in Administrator account, create a dedicated domain admin account for daily administration.
 
-![Creating domain admin account](
-
-https://github.com/user-attachments/assets/4e0f8294-393d-42d4-bf14-4e7d362fde3e
-
-)
+![Creating domain admin account](https://github.com/user-attachments/assets/93a406b9-53a4-467d-9806-be6b54338d70)
 
 After creation, add this new user to the **Domain Admins** security group using Active Directory Users and Computers. Then log out and log in with the new domain admin credentials.
 
-![Elevating to admin](
-
-https://github.com/user-attachments/assets/60226f07-de76-4432-836d-e7d6e6c6cd53
-
-)
+![Elevating to admin](https://github.com/user-attachments/assets/c8903ece-a155-4f93-9324-72c6077b453e)
 
 ---
 
@@ -209,6 +203,75 @@ In Active Directory Users and Computers, create a new domain user (e.g., **TestU
 
 ---
 
+### 9. Verification and Testing
+
+After completing the configuration, several tests were performed to ensure the environment is functioning correctly.
+
+#### 9.1 Client IP Assignment and Connectivity
+From the client VM (CLIENT-1), the `ipconfig` command confirms that it has received a valid IP address from the DHCP server running on the Domain Controller. Additionally, pinging the domain name (`VirtualLab.local`) succeeds, indicating proper DNS resolution and network connectivity.
+
+![IP configuration and ping test](https://github.com/user-attachments/assets/85b32f49-5073-4ddc-a8dd-8f67f215fde7)
+
+#### 9.2 End‑to‑End Functionality Test
+A comprehensive test was conducted to validate the entire work environment, including the bulk users created. The successful login and access to resources confirm that the domain, authentication, and network services are operating as expected.
+
+![Environment functionality test](https://github.com/user-attachments/assets/d8802488-aa2b-4703-8a7c-d65f8d313ff6)
+
+#### 9.3 Reviewing DHCP Leases
+Returning to the Domain Controller, the DHCP console shows the active address leases. The lease for CLIENT-1 is present, confirming that the DHCP server successfully assigned an IP from the defined scope. In a production environment, this list would contain many more entries, depending on the lease duration and network size.
+
+![DHCP lease list](https://github.com/user-attachments/assets/4f50d3c2-7dbb-479d-b349-3524aef8d128)
+
+#### 9.4 Verifying Computer Objects in Active Directory
+Active Directory Users and Computers reveals that CLIENT-1 has been registered as a computer object in the domain. This automatic registration is a key aspect of domain membership and confirms that the client is properly joined to the domain.
+
+![Computer object in AD](https://github.com/user-attachments/assets/2a1e6ef1-374e-4ae9-a6f3-f00fb2963959)
+
+---
+
+### 10. Implementing Group Policy Objects (GPOs)
+
+To demonstrate advanced administrative capabilities, I implemented several Group Policy Objects (GPOs) for centralized configuration management.
+
+#### 10.1 Creating Organizational Units (OUs)
+Using Active Directory Users and Computers, I created an **IT** OU to organize related objects. Within IT, I created sub‑OUs: **Computers** (for client machines) and **Users** (for domain user accounts). This structure allows targeted GPO application.
+
+#### 10.2 Creating and Linking GPOs
+Using the Group Policy Management Console (GPMC), I created the following GPOs and linked them to the appropriate OUs:
+
+- **Password Policy** – Defines domain password complexity, length, and lockout settings (linked to the domain).
+- **Account Lockout Policy** – Configures account lockout thresholds and duration (linked to the domain).
+- **Disable USB Devices** – Computer configuration to block USB storage access (linked to the **Computers** OU).
+- **Drive Mapping** – User configuration to map network drives automatically (linked to the **Users** OU).
+- **Desktop Wallpaper Policy** – User configuration to set a corporate desktop background (linked to the **Users** OU).
+- **Restrict Control Panel** – User configuration to limit access to Control Panel settings (linked to the **Users** OU).
+
+Below are screenshots of the GPMC showing the created GPOs and their links.
+
+![GPO list - 1](https://github.com/user-attachments/assets/vmware_K5enpTXfq1.gif)
+![GPO list - 2](https://github.com/user-attachments/assets/vmware_NCJ2tRoZnK.gif)
+![GPO list - 3](https://github.com/user-attachments/assets/vmware_Z8IHip446w.gif)
+![GPO list - 4](https://github.com/user-attachments/assets/vmware_aQBR2zmjIS.gif)
+![GPO list - 5](https://github.com/user-attachments/assets/vmware_qJjFa0oPb3.gif)
+![GPO list - 6](https://github.com/user-attachments/assets/vmware_UOFjOsxW3e.png)
+
+#### 10.3 Verifying GPO Application with `gpresult`
+After linking the GPOs and forcing a Group Policy update (`gpupdate /force`) on the client, I used the `gpresult` command to verify which policies were applied.
+
+**Computer Configuration** (run as administrator on CLIENT-1):  
+`gpresult /r /scope:computer` shows that the computer receives the **Default Domain Policy**, **Password Policy**, **Disable USB Devices**, and **Account Lockout Policy**.
+
+![gpresult computer](https://github.com/user-attachments/assets/vmware_jBqYExPml3.png)
+
+**User Configuration** (run as the domain user Ivan-V):  
+`gpresult /r` shows that the user receives **Drive Mapping**, **Desktop Wallpaper Policy**, and **Restrict Control Panel** as intended.
+
+![gpresult user](https://github.com/user-attachments/assets/vmware_9nhphHxpER.png)
+
+These results confirm that the GPOs are correctly filtered and applied based on the OU structure and security group membership.
+
+---
+
 ## ✅ Conclusion
 
 Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
@@ -218,9 +281,10 @@ Through this hands‑on project, I successfully designed and implemented a fully
 - DNS and DHCP services for automated network configuration.
 - NAT/RAS to provide internet access to internal clients.
 - A Windows 10 client joined to the domain, demonstrating real‑world authentication and resource access.
+- Centralized management via Group Policy Objects, showcasing the ability to enforce security settings and user configurations.
 
-
+This project demonstrates practical skills in **system administration**, **networking**, **Active Directory management**, **group policy**, and **virtualization**. It reflects my ability to plan, deploy, and maintain enterprise‑level IT services in a controlled environment, preparing me for real‑world challenges in IT support and infrastructure administration.
 
 ---
 
-
+*For any questions or further details, please feel free to reach out.*
