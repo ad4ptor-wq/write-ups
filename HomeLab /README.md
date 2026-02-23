@@ -288,34 +288,41 @@ These results confirm that the GPOs are correctly filtered and applied based on 
 
 To provide centralized storage and enforce disk usage limits, I set up a file server on the Domain Controller and configured quotas using File Server Resource Manager (FSRM).
 
-#### 11.1 Install File Server Role and FSRM
+#### 11. Install File Server Role and FSRM
 Via Server Manager, I added the **File and Storage Services** role and the **File Server Resource Manager** feature. This enables quota management, file screens, and storage reports.
+![vmware_BqDQ3YEZ7A](https://github.com/user-attachments/assets/10a0cd00-d116-4e42-b685-7dd73d8e26d6)
 
-![FSRM Console](vmware_kUihxsaNaz.gif)  
-*(Replace with actual filename)*
-
-#### 11.2 Create a Shared Folder
+#### 11. Create a Shared Folder
 I created a folder `C:\Shares\Shared` and shared it as `\\DC\SHARED`. Permissions were set to allow domain users to read/write.
+![vmware_jOMA2lpbCY](https://github.com/user-attachments/assets/75c41766-d78b-4677-9010-1f05114310d5)
 
-#### 11.3 Configure Quota
+verific hostname
+<img width="1024" height="768" alt="vmware_TbjJpKTP6D" src="https://github.com/user-attachments/assets/e15aa565-f2e8-4a5e-b34a-4f30bc79c109" />
+
+
+create in grup policy mapping devices
+![vmware_915evqFcRF](https://github.com/user-attachments/assets/cbc27e0f-ed14-4581-9f71-85243db67f1f)
+
+#### 11. Configure Quota
 Using FSRM, I created a quota on the shared folder to limit its size to **100 MB** with a hard limit. When the limit is reached, users cannot write additional data.
+![vmware_Rdtq53pci5](https://github.com/user-attachments/assets/abd0da25-cfb7-4aa6-b5bc-fd93d07f5d1b)
+File screan menagment 
+![vmware_kUihxsaNaz](https://github.com/user-attachments/assets/59e9e679-f3d4-4c98-91e5-0c0df39548e8)
 
-#### 11.4 Verify on Client
+#### 11. Verify on Client
 On CLIENT-1, the shared folder appears as a network drive (S:). The properties show the total size and free space matching the quota.
+![vmware_H1ZXAbzVb0](https://github.com/user-attachments/assets/9ebca6eb-221b-438f-a8fa-9483560f930e)
 
-![Shared folder on client](vmware_YydlXujJh5.png)  
-*(Replace with actual filename)*
+<img width="1024" height="768" alt="vmware_ITxM3SwIvY" src="https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9" />
+confirm
+<img width="1024" height="768" alt="vmware_YydlXujJh5" src="https://github.com/user-attachments/assets/4dd842b1-02b4-4ed3-a61a-309080beb7f2" />
 
-![This PC showing S: drive](vmware_oU26xtUru5.png)  
-*(Replace with actual filename)*
+
 
 The client can access the share, and the quota effectively restricts storage usage.
+confirm 
+  <img width="1024" height="768" alt="vmware_oU26xtUru5" src="https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec" />
 
-#### 11.5 FSRM Dashboard
-The FSRM console provides an overview of quotas, file screens, and management tasks.
-
-![FSRM overview](vmware_kUihxsaNaz.gif)  
-*(Already referenced)*
 
 ---
 
