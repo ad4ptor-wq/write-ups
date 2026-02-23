@@ -20,6 +20,7 @@ The project not only showcases my technical expertise in IT infrastructure manag
   - [8. Deploy and Configure Client Machine (CLIENT-1)](#8-deploy-and-configure-client-machine-client-1)
   - [9. Verification and Testing](#9-verification-and-testing)
   - [10. Implementing Group Policy Objects (GPOs)](#10-implementing-group-policy-objects-gpos)
+  - [11. Configuring File Server and Quota Management](#11-configuring-file-server-and-quota-management)
 - [Conclusion](#conclusion)
 
 ---
