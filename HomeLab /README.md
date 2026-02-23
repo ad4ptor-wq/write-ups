@@ -304,12 +304,12 @@ A folder was created at `C:\Shares\Shared` and shared as `\\DC\SHARED`.
 
 ![Creating Shared Folder](https://github.com/user-attachments/assets/75c41766-d78b-4677-9010-1f05114310d5)
 
-**Verification – Hostname Check:**  
+### Verification – Hostname Check
 The server’s hostname is confirmed to be **DC**.
 
 ![Hostname Verification](https://github.com/user-attachments/assets/e15aa565-f2e8-4a5e-b34a-4f30bc79c109)
 
-**Group Policy – Drive Mapping:**  
+### Group Policy – Drive Mapping
 To automatically map the shared folder on client machines, a Group Policy Object (GPO) was configured to create a network drive (S:).
 
 ![GPO Drive Mapping](https://github.com/user-attachments/assets/cbc27e0f-ed14-4581-9f71-85243db67f1f)
@@ -324,7 +324,7 @@ Using **FSRM**, a quota was applied to the shared folder with the following sett
 
 ![Creating Quota in FSRM](https://github.com/user-attachments/assets/abd0da25-cfb7-4aa6-b5bc-fd93d07f5d1b)
 
-**File Screen Management (Optional):**  
+### File Screen Management (Optional)
 File screens can be added to block specific file types; this step demonstrates the FSRM interface.
 
 ![File Screen Management](https://github.com/user-attachments/assets/59e9e679-f3d4-4c98-91e5-0c0df39548e8)
@@ -332,28 +332,17 @@ File screens can be added to block specific file types; this step demonstrates t
 ---
 
 ## 11.4 Verify on Client Machine
-1. **Map Network Drive via GPO:**  
-   The Group Policy configured earlier automatically maps the shared folder as drive **S:** on client startup.  
-   *If needed, force an immediate update using:*  
-   `gpupdate /force`
 
-2. **Confirm Mapped Drive:**  
-   On client **CLIENT-1**, open File Explorer to verify the presence of drive **S:**.
+### Map Network Drive via GPO
+The Group Policy configured earlier automatically maps the shared folder as drive **S:** on client startup.  
+![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
 
-   ![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
+If needed, force an immediate update using:
+```cmd
+gpupdate /force
 
-3. **Check Quota Enforcement:**  
-   Right-click the mapped drive, select **Properties**, and observe the total capacity (100 MB) and free space. This confirms the quota is active.
-
-   ![Client Drive Properties](https://github.com/user-attachments/assets/9ebca6eb-221b-438f-a8fa-9483560f930e)
-
-4. **Final Validation – Write Test:**  
-   Attempt to copy files into the share. Once the 100 MB limit is reached, further writes are blocked, confirming the hard quota functions as intended.
-
-   ![Final Confirmation](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
 
 ---
-
 ## ✅ Conclusion
 
 Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
