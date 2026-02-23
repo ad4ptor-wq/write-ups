@@ -48,7 +48,7 @@ The project not only showcases my technical expertise in IT infrastructure manag
 
 ### 1. Create Virtual Machines in VMware Workstation
 
-#### Domain Controller (DC)
+**Domain Controller (DC)**
 - **File** → **New Virtual Machine** → **Typical (recommended)**.
 - **Installer disc image file (iso)**: Select the Windows Server 2022 ISO.
 - **Guest Operating System**: Microsoft Windows → **Windows Server 2022**.
@@ -58,10 +58,9 @@ The project not only showcases my technical expertise in IT infrastructure manag
   - Memory: 2 GB
   - Processors: 2 cores
 
-![VM creation for DC](vmware_NDya99UaD2.png)  
-*(Replace with actual filename)*
+![VM creation for DC](https://github.com/user-attachments/assets/430726d3-87a7-4043-8956-2afda7c6f274)
 
-#### Client Machine (CLIENT-1)
+**Client Machine (CLIENT-1)**
 Repeat the same process with the following adjustments:
 - **Operating System**: Windows 10 (or Windows 11) ISO.
 - **Hardware**: 2 vCPU, 2 GB RAM, 20 GB disk.
@@ -75,14 +74,13 @@ To function as a Domain Controller, the VM requires two network adapters:
 - **NAT Adapter**: Uses the host’s IP address to provide external connectivity.
 - **Internal Network Adapter (VMnet0)**: Enables communication with other VMs on the private network.
 
-![Network adapter settings](vmware_pE5WJMZyNi.png)  
-*(Replace with actual filename)*
+![Network adapter settings](https://github.com/user-attachments/assets/2b6bafa1-6d1f-4b02-a671-6f1b8e6ee532)
 
 ---
 
 ### 3. Operating System Installation
 
-#### Windows Server 2022
+**Windows Server 2022**
 - Boot the VM and select language/keyboard preferences.
 - Click **Install now**.
 - Choose **Windows Server 2022 Standard Evaluation (Desktop Experience)**.
@@ -90,101 +88,66 @@ To function as a Domain Controller, the VM requires two network adapters:
 - Select the single disk and proceed with installation.
 - After reboot, set a password for the built‑in **Administrator** account.
 
-![Server installation progress](vmware_uJveWdrZGG.png)  
-*(Replace with actual filename)*
+![Server installation progress](https://github.com/user-attachments/assets/2989496f-b310-4ed2-a02e-71b7b3094ed7)
 
 ---
 
 ### 4. Post‑Installation Server Configuration
 
-#### 4.1 Rename Network Adapters
-After logging in, identify the two network adapters:
-- **Ethernet0** is the NAT adapter (DNS shows “localdomain”).
-- **Ethernet1** will be used for internal communication.
+After logging in, first identify the two network adapters: **Ethernet0** is the NAT adapter (DNS shows “localdomain”), and **Ethernet1** will be used for internal communication. Rename them for clarity (e.g., “External” and “Internal”) to simplify subsequent configuration.
 
-![Identifying adapters](vmware_84MDamCRWe.png)  
-*(Replace with actual filename)*
+![Identifying adapters](https://github.com/user-attachments/assets/1a9f9f1b-8f96-418b-8a2d-738b41bfc77f)
+![Renaming adapters](https://github.com/user-attachments/assets/fc799819-c867-4f7b-8cb8-178a36c9c846)
 
-Rename them for clarity (e.g., “External” and “Internal”) to simplify subsequent configuration.
-
-![Renaming adapters](vmware_w5wRKhQ1Hg.png)  
-*(Replace with actual filename)*
-
-#### 4.2 Configure Internal Network Adapter
 Assign the internal adapter a static IP address as per the network diagram (e.g., **172.16.0.1**).  
 - **Default Gateway**: Leave blank (the Domain Controller will act as gateway).  
 - **DNS Server**: Use the same IP (the loopback address) because Active Directory will automatically install DNS.
 
-![Static IP configuration](vmware_qcty3V8NLv.png)  
-*(Replace with actual filename)*
+![Static IP configuration](https://github.com/user-attachments/assets/0099c3da-d8bd-4b6f-992f-b69da8b8ca8c)
 
-#### 4.3 Rename the Computer
 Rename the server to **DC** (Domain Controller) to simplify identification. A reboot is required.
 
-![Renaming the PC](vmware_RuId8kh0Uf.png)  
-*(Replace with actual filename)*
-
-#### 4.4 Server Manager Overview
-After reboot, Server Manager shows the installed roles and services.
-
-![Server Manager](vmware_BqDQ3YEZ7A.gif)  
-*(Replace with actual filename)*
+![Renaming the PC](https://github.com/user-attachments/assets/a4d4a13c-9120-44ae-b0f9-1ca3c704237e)
 
 ---
 
 ### 5. Install and Configure Active Directory Domain Services (AD DS)
 
-#### 5.1 Install AD DS Role
-After rebooting, open Server Manager and add the **Active Directory Domain Services** role.
+Open Server Manager and add the **Active Directory Domain Services** role.
 
-![Adding AD DS role](vmware_q4zLLdl6ws.png)  
-*(Replace with actual filename)*
+![Adding AD DS role](https://github.com/user-attachments/assets/6eb7b3d5-5931-4418-96f7-9361e4ee841f)
 
-#### 5.2 Promote Server to Domain Controller
 Once the role is installed, promote the server to a Domain Controller and create a new forest with the domain name **VirtualLab.local**.
 
-![Promotion to DC](vmware_ClFxEA8zap.png)  
-*(Replace with actual filename)*
+![Promotion to DC](https://github.com/user-attachments/assets/a02fff50-8904-4b51-9002-39f6c4f1b4ad)
 
 After promotion, the server restarts. Upon logging back in, the administrator account will show the domain prefix (e.g., **VIRTUALLAB\Administrator**), confirming successful domain creation.
 
-![Domain created](vmware_Ylh1VlstjQ.png)  
-*(Replace with actual filename)*
+![Domain created](https://github.com/user-attachments/assets/73a4d330-b671-48b8-8c6d-728640efd2c8)
 
-#### 5.3 Create a Dedicated Domain Admin Account
 Instead of using the built‑in Administrator account, create a dedicated domain admin account for daily administration.
 
-![Creating domain admin account](vmware_93a406b9-53a4-467d-9806-be6b54338d70.gif)  
-*(Replace with actual filename)*
+![Creating domain admin account](https://github.com/user-attachments/assets/93a406b9-53a4-467d-9806-be6b54338d70)
 
 After creation, add this new user to the **Domain Admins** security group using Active Directory Users and Computers. Then log out and log in with the new domain admin credentials.
 
-![Elevating to admin](vmware_c8903ece-a155-4f93-9324-72c6077b453e.gif)  
-*(Replace with actual filename)*
+![Elevating to admin](https://github.com/user-attachments/assets/c8903ece-a155-4f93-9324-72c6077b453e)
 
-#### 5.4 Verify DC Hostname
-Open Command Prompt to verify the server hostname.
+Verify the hostname to ensure the server is correctly identified:
 
-![Hostname verification](vmware_TbjJpKTP6D.png)  
-*(Replace with actual filename)*
+![Hostname verification](https://github.com/user-attachments/assets/e15aa565-f2e8-4a5e-b34a-4f30bc79c109)
 
 ---
 
 ### 6. Configure Remote Access (RAS/NAT)
 
-To allow client machines on the internal network to access the internet through the Domain Controller, install and configure the **Remote Access** role with NAT.
+To allow client machines on the internal network to access the internet through the Domain Controller, install and configure the **Remote Access** role with NAT. Add the **Remote Access** role via Server Manager, selecting the **Routing** role service.
 
-#### 6.1 Install Remote Access Role
-Add the **Remote Access** role via Server Manager, selecting the **Routing** role service.
+![Installing Remote Access](https://github.com/user-attachments/assets/036c896f-ef3a-42fa-88f7-46762c98f783)
 
-![Installing Remote Access](vmware_TpXYlzRunv.png)  
-*(Replace with actual filename)*
-
-#### 6.2 Configure NAT
 After installation, open **Routing and Remote Access** from the Tools menu, right‑click the server, and select **Configure and Enable Routing and Remote Access**. Choose **Network Address Translation (NAT)** and select the external network interface (the NAT adapter) to share the internet connection.
 
-![Configuring NAT](vmware_DZh2cMkKaj.png)  
-*(Replace with actual filename)*
+![Configuring NAT](https://github.com/user-attachments/assets/27e6d5bd-f7dd-4a78-9544-19c2dae7b894)
 
 ---
 
@@ -192,13 +155,8 @@ After installation, open **Routing and Remote Access** from the Tools menu, righ
 
 To automatically assign IP addresses to client machines on the internal network, install the **DHCP Server** role.
 
-#### 7.1 Install DHCP Role
-Add the DHCP Server role via Server Manager.
+![Installing DHCP](https://github.com/user-attachments/assets/94357488-7af2-4d80-892d-6f0a5a8da89f)
 
-![Installing DHCP](vmware_GaC5X0QuQS.png)  
-*(Replace with actual filename)*
-
-#### 7.2 Create a DHCP Scope
 After installation, open the DHCP management console and create a new scope:
 - **Scope Name**: Internal Clients
 - **IP Address Range**: 192.168.1.100 – 192.168.1.200 (100 addresses)
@@ -206,35 +164,26 @@ After installation, open the DHCP management console and create a new scope:
 
 The scope defines the pool of addresses that DHCP can assign to clients.
 
-![Creating DHCP scope](vmware_aMfRJWlQfa.png)  
-*(Replace with actual filename)*
+![Creating DHCP scope](https://github.com/user-attachments/assets/1e3a12ff-4dd1-4a09-86ef-51418ba07ac9)
 
 ---
 
 ### 8. Deploy and Configure Client Machine (CLIENT-1)
 
-#### 8.1 Create Client VM
 Create a new VM named **CLIENT-1** using the Windows 10 ISO.  
 - **Network Adapter**: Set to **Internal Network (VMnet0)** – the same network as the Domain Controller’s internal adapter. This ensures the client can only obtain an IP from the DHCP server on the DC and access the internet via NAT.
 
-![Client VM creation](vmware_bglfyrQY7q.png)  
-*(Replace with actual filename)*
+![Client VM creation](https://github.com/user-attachments/assets/b5b814c5-02b6-43e1-8d69-cf419070fa79)
+![Network settings for client](https://github.com/user-attachments/assets/ecd23a08-bc2c-4ae9-b1fb-4d4299e76e63)
 
-![Network settings for client](vmware_lRZ8sd6v6f.png)  
-*(Replace with actual filename)*
-
-#### 8.2 Join the Domain
 After installing Windows 10, rename the computer to **CLIENT-1** and join the **VirtualLab.local** domain. When prompted for credentials, use the previously created domain admin account.
 
-![Joining the domain](vmware_Jo7P4RElQb.png)  
-*(Replace with actual filename)*
+![Joining the domain](https://github.com/user-attachments/assets/bd5f839e-3ff8-4191-a95c-769d28fe0644)
 
-#### 8.3 Create a Test User
 In Active Directory Users and Computers, create a new domain user (e.g., **TestUser**) to simulate a typical employee account. This user can later log in to CLIENT-1.
 
-![Creating a new user](vmware_UxjYHBvyXg.png)  
-![User creation confirmation](vmware_6CiwbJgI6q.png)  
-*(Replace with actual filenames)*
+![Creating a new user](https://github.com/user-attachments/assets/1d1a0332-2b7f-4070-a3fc-1b857d74fe4e)
+![User creation confirmation](https://github.com/user-attachments/assets/21d594ce-b887-47d4-bc42-a57aac163865)
 
 ---
 
@@ -242,29 +191,21 @@ In Active Directory Users and Computers, create a new domain user (e.g., **TestU
 
 After completing the configuration, several tests were performed to ensure the environment is functioning correctly.
 
-#### 9.1 Client IP Assignment and Connectivity
 From the client VM (CLIENT-1), the `ipconfig` command confirms that it has received a valid IP address from the DHCP server running on the Domain Controller. Additionally, pinging the domain name (`VirtualLab.local`) succeeds, indicating proper DNS resolution and network connectivity.
 
-![IP configuration and ping test](vmware_jkFM62NVsv.png)  
-*(Replace with actual filename)*
+![IP configuration and ping test](https://github.com/user-attachments/assets/85b32f49-5073-4ddc-a8dd-8f67f215fde7)
 
-#### 9.2 End‑to‑End Functionality Test
 A comprehensive test was conducted to validate the entire work environment, including the bulk users created. The successful login and access to resources confirm that the domain, authentication, and network services are operating as expected.
 
-![Environment functionality test](vmware_W5v3zkabxX.png)  
-*(Replace with actual filename)*
+![Environment functionality test](https://github.com/user-attachments/assets/d8802488-aa2b-4703-8a7c-d65f8d313ff6)
 
-#### 9.3 Reviewing DHCP Leases
 Returning to the Domain Controller, the DHCP console shows the active address leases. The lease for CLIENT-1 is present, confirming that the DHCP server successfully assigned an IP from the defined scope.
 
-![DHCP lease list](vmware_upahn8CZXi.png)  
-*(Replace with actual filename)*
+![DHCP lease list](https://github.com/user-attachments/assets/4f50d3c2-7dbb-479d-b349-3524aef8d128)
 
-#### 9.4 Verifying Computer Objects in Active Directory
-Active Directory Users and Computers reveals that CLIENT-1 has been registered as a computer object in the domain. This automatic registration is a key aspect of domain membership.
+Active Directory Users and Computers reveals that CLIENT-1 has been registered as a computer object in the domain. This automatic registration confirms that the client is properly joined.
 
-![Computer object in AD](vmware_jQNOwVkhT3.png)  
-*(Replace with actual filename)*
+![Computer object in AD](https://github.com/user-attachments/assets/2a1e6ef1-374e-4ae9-a6f3-f00fb2963959)
 
 ---
 
@@ -272,49 +213,49 @@ Active Directory Users and Computers reveals that CLIENT-1 has been registered a
 
 To demonstrate advanced administrative capabilities, I implemented several Group Policy Objects (GPOs) for centralized configuration management.
 
-#### 10.1 Creating Organizational Units (OUs)
-Using Active Directory Users and Computers, I created an **IT** OU to organize related objects. Within IT, I created sub‑OUs: **Computers** (for client machines) and **Users** (for domain user accounts). This structure allows targeted GPO application.
+First, using Active Directory Users and Computers, I created an **IT** OU to organize related objects. Within IT, I created sub‑OUs: **Computers** (for client machines) and **Users** (for domain user accounts). This structure allows targeted GPO application.
 
-#### 10.2 Creating and Linking GPOs
 Using the Group Policy Management Console (GPMC), I created the following GPOs and linked them to the appropriate OUs:
 
-- **Password Policy** – Defines domain password complexity, length, and lockout settings (linked to the domain).
-- **Account Lockout Policy** – Configures account lockout thresholds and duration (linked to the domain).
-- **Disable USB Devices** – Computer configuration to block USB storage access (linked to the **Computers** OU).
-- **Drive Mapping** – User configuration to map network drives automatically (linked to the **Users** OU).
-- **Desktop Wallpaper Policy** – User configuration to set a corporate desktop background (linked to the **Users** OU).
-- **Restrict Control Panel** – User configuration to limit access to Control Panel settings (linked to the **Users** OU).
+- **Password Policy** – Defines domain password complexity, length, and lockout settings (linked to the domain).  
+  ![Password Policy GPO](https://github.com/user-attachments/assets/333bb1ce-2dec-4eeb-8589-d69d947e7935)
 
-Below are screenshots of the GPMC showing the created GPOs and their links.
+- **Account Lockout Policy** – Configures account lockout thresholds and duration (linked to the domain).  
+  ![Account Lockout Policy GPO](https://github.com/user-attachments/assets/08eb010e-27e0-458e-9733-ac01cf7c3ebf)
 
-![GPO list - 1](vmware_K5enpTXfq1.gif)  
-![GPO list - 2](vmware_NCJ2tRoZnK.gif)  
-![GPO list - 3](vmware_Z8IHip446w.gif)  
-![GPO list - 4](vmware_aQBR2zmjIS.gif)  
-![GPO list - 5](vmware_qJjFa0oPb3.gif)  
-![GPO list - 6](vmware_UOFjOsxW3e.png)  
-*(Replace with actual filenames)*
+- **Disable USB Devices** – Computer configuration to block USB storage access (linked to the **Computers** OU).  
+  ![Disable USB GPO](https://github.com/user-attachments/assets/fb06d668-6bb4-40ec-a1fc-3c605585510a)
 
-#### 10.3 Verifying GPO Application with `gpresult`
-After linking the GPOs and forcing a Group Policy update (`gpupdate /force`) on the client, I used the `gpresult` command to verify which policies were applied.
+- **Drive Mapping** – User configuration to map network drives automatically (linked to the **Users** OU).  
+  ![Drive Mapping GPO](https://github.com/user-attachments/assets/b032b615-86e7-42d2-ab90-1f71ededbb0b)
+
+- **Desktop Wallpaper Policy** – User configuration to set a corporate desktop background (linked to the **Users** OU).  
+  ![Desktop Wallpaper GPO](https://github.com/user-attachments/assets/ff8c925a-c4b3-49d4-afc6-2c6e4569c0e7)
+
+- **Restrict Control Panel** – User configuration to limit access to Control Panel settings (linked to the **Users** OU).  
+  ![Restrict Control Panel GPO](https://github.com/user-attachments/assets/f0a7a788-c04e-4514-a60e-bd869e6ac804)
+
+The following screenshot shows the complete list of GPOs in the GPMC:
+
+![GPO overview](https://github.com/user-attachments/assets/4969407e-df9d-419b-ae3a-08c309be2c0c)
+
+After linking the GPOs, force a Group Policy update on the client using `gpupdate /force`.
+
+![gpupdate force](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
+
+Then use the `gpresult` command to verify which policies were applied.
 
 **Computer Configuration** (run as administrator on CLIENT-1):  
 `gpresult /r /scope:computer` shows that the computer receives the **Default Domain Policy**, **Password Policy**, **Disable USB Devices**, and **Account Lockout Policy**.
 
-![gpresult computer](vmware_jBqYExPml3.png)  
-*(Replace with actual filename)*
+![gpresult computer](https://github.com/user-attachments/assets/3cb97f65-4b80-4192-a109-d3667b6aa23b)
 
 **User Configuration** (run as the domain user Ivan-V):  
 `gpresult /r` shows that the user receives **Drive Mapping**, **Desktop Wallpaper Policy**, and **Restrict Control Panel** as intended.
 
-![gpresult user](vmware_9nhphHxpER.png)  
-*(Replace with actual filename)*
+![gpresult user](https://github.com/user-attachments/assets/996049bd-8135-40d7-a166-6a896829818d)
 
-#### 10.4 Forcing Group Policy Update
-On the client, I ran `gpupdate /force` to immediately apply any new policy changes.
-
-![gpupdate force](vmware_ITxM3SwIvY.png)  
-*(Replace with actual filename)*
+These results confirm that the GPOs are correctly filtered and applied based on the OU structure and security group membership.
 
 ---
 
@@ -322,34 +263,40 @@ On the client, I ran `gpupdate /force` to immediately apply any new policy chang
 
 To provide centralized storage and enforce disk usage limits, I set up a file server on the Domain Controller and configured quotas using File Server Resource Manager (FSRM).
 
-#### 11.1 Install File Server Role and FSRM
-Via Server Manager, I added the **File and Storage Services** role and the **File Server Resource Manager** feature. This enables quota management, file screens, and storage reports.
+First, open **Server Manager** to get an overview of the installed roles and services.
 
-![FSRM Console](vmware_kUihxsaNaz.gif)  
-*(Replace with actual filename)*
+![Server Manager Dashboard](https://github.com/user-attachments/assets/10a0cd00-d116-4e42-b685-7dd73d8e26d6)
 
-#### 11.2 Create a Shared Folder
+Via Server Manager, I added the **File and Storage Services** role and the **File Server Resource Manager** feature. This enables quota management, file screens, and storage reports. The FSRM console provides an overview of quotas, file screens, and management tasks.
+
+![FSRM Console](https://github.com/user-attachments/assets/59e9e679-f3d4-4c98-91e5-0c0df39548e8)
+
 I created a folder `C:\Shares\Shared` and shared it as `\\DC\SHARED`. Permissions were set to allow domain users to read/write.
 
-#### 11.3 Configure Quota
 Using FSRM, I created a quota on the shared folder to limit its size to **100 MB** with a hard limit. When the limit is reached, users cannot write additional data.
 
-#### 11.4 Verify on Client
+![Quota configuration](https://github.com/user-attachments/assets/abd0da25-cfb7-4aa6-b5bc-fd93d07f5d1b)
+
 On CLIENT-1, the shared folder appears as a network drive (S:). The properties show the total size and free space matching the quota.
 
-![Shared folder on client](vmware_YydlXujJh5.png)  
-*(Replace with actual filename)*
+![Shared folder on client](https://github.com/user-attachments/assets/4dd842b1-02b4-4ed3-a61a-309080beb7f2)
 
-![This PC showing S: drive](vmware_oU26xtUru5.png)  
-*(Replace with actual filename)*
+In the "This PC" window, the S: drive is visible with the correct capacity and free space (100 MB total, 99.9 MB free).
+
+![This PC showing S: drive](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
 
 The client can access the share, and the quota effectively restricts storage usage.
 
-#### 11.5 FSRM Dashboard
-The FSRM console provides an overview of quotas, file screens, and management tasks.
+Additional screenshots showing the environment:
 
-![FSRM overview](vmware_kUihxsaNaz.gif)  
-*(Already referenced)*
+- **Quick Access view**  
+  ![Quick Access](https://github.com/user-attachments/assets/9ebca6eb-221b-438f-a8fa-9483560f930e)
+
+- **This PC with mounted drive**  
+  ![This PC](https://github.com/user-attachments/assets/75c41766-d78b-4677-9010-1f05114310d5)
+
+- **Recycle Bin and desktop**  
+  ![Desktop](https://github.com/user-attachments/assets/cbc27e0f-ed14-4581-9f71-85243db67f1f)
 
 ---
 
