@@ -283,6 +283,41 @@ These results confirm that the GPOs are correctly filtered and applied based on 
 
 ---
 
+### 11. Configuring File Server and Quota Management
+
+To provide centralized storage and enforce disk usage limits, I set up a file server on the Domain Controller and configured quotas using File Server Resource Manager (FSRM).
+
+#### 11.1 Install File Server Role and FSRM
+Via Server Manager, I added the **File and Storage Services** role and the **File Server Resource Manager** feature. This enables quota management, file screens, and storage reports.
+
+![FSRM Console](vmware_kUihxsaNaz.gif)  
+*(Replace with actual filename)*
+
+#### 11.2 Create a Shared Folder
+I created a folder `C:\Shares\Shared` and shared it as `\\DC\SHARED`. Permissions were set to allow domain users to read/write.
+
+#### 11.3 Configure Quota
+Using FSRM, I created a quota on the shared folder to limit its size to **100 MB** with a hard limit. When the limit is reached, users cannot write additional data.
+
+#### 11.4 Verify on Client
+On CLIENT-1, the shared folder appears as a network drive (S:). The properties show the total size and free space matching the quota.
+
+![Shared folder on client](vmware_YydlXujJh5.png)  
+*(Replace with actual filename)*
+
+![This PC showing S: drive](vmware_oU26xtUru5.png)  
+*(Replace with actual filename)*
+
+The client can access the share, and the quota effectively restricts storage usage.
+
+#### 11.5 FSRM Dashboard
+The FSRM console provides an overview of quotas, file screens, and management tasks.
+
+![FSRM overview](vmware_kUihxsaNaz.gif)  
+*(Already referenced)*
+
+---
+
 ## ✅ Conclusion
 
 Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
@@ -293,9 +328,8 @@ Through this hands‑on project, I successfully designed and implemented a fully
 - NAT/RAS to provide internet access to internal clients.
 - A Windows 10 client joined to the domain, demonstrating real‑world authentication and resource access.
 - Centralized management via Group Policy Objects, showcasing the ability to enforce security settings and user configurations.
+- File server with quota management using File Server Resource Manager, illustrating storage governance.
 
-This project demonstrates practical skills in **system administration**, **networking**, **Active Directory management**, **group policy**, and **virtualization**. It reflects my ability to plan, deploy, and maintain enterprise‑level IT services in a controlled environment, preparing me for real‑world challenges in IT support and infrastructure administration.
+This project demonstrates practical skills in **system administration**, **networking**, **Active Directory management**, **group policy**, **file services**, and **virtualization**. It reflects my ability to plan, deploy, and maintain enterprise‑level IT services in a controlled environment, preparing me for real‑world challenges in IT support and infrastructure administration.
 
 ---
-
-*For any questions or further details, please feel free to reach out.*
