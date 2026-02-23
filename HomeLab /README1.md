@@ -261,59 +261,38 @@ These results confirm that the GPOs are correctly filtered and applied based on 
 
 ### 11. Configuring File Server and Quota Management
 
-To provide centralized storage and enforce disk usage limits, I set up a file server on the Domain Controller and configured quotas using File Server Resource Manager (FSRM).
+#### 11.1 Install File Server Role and FSRM
+Using **Server Manager**, the **File and Storage Services** role and the **File Server Resource Manager (FSRM)** feature were added. These tools enable quota management, file screening, and storage reporting.
 
-First, open **Server Manager** to get an overview of the installed roles and services.
+![Installing File Server Role and FSRM](https://github.com/user-attachments/assets/10a0cd00-d116-4e42-b685-7dd73d8e26d6)
 
-![Server Manager Dashboard](https://github.com/user-attachments/assets/10a0cd00-d116-4e42-b685-7dd73d8e26d6)
+#### 11.2 Create a Shared Folder
+A folder was created at `C:\Shares\Shared` and shared as `\\DC\SHARED`. **Share Permissions:** Domain Users are granted **Read/Write** access.
 
-Via Server Manager, I added the **File and Storage Services** role and the **File Server Resource Manager** feature. This enables quota management, file screens, and storage reports. The FSRM console provides an overview of quotas, file screens, and management tasks.
+![Creating Shared Folder](https://github.com/user-attachments/assets/75c41766-d78b-4677-9010-1f05114310d5)
 
-![FSRM Console](https://github.com/user-attachments/assets/59e9e679-f3d4-4c98-91e5-0c0df39548e8)
+**Verification – Hostname Check:** The server’s hostname is confirmed to be **DC**.
 
-I created a folder `C:\Shares\Shared` and shared it as `\\DC\SHARED`. Permissions were set to allow domain users to read/write.
+![Hostname Verification](https://github.com/user-attachments/assets/e15aa565-f2e8-4a5e-b34a-4f30bc79c109)
 
-Using FSRM, I created a quota on the shared folder to limit its size to **100 MB** with a hard limit. When the limit is reached, users cannot write additional data.
+**Group Policy – Drive Mapping:** To automatically map the shared folder on client machines, a Group Policy Object (GPO) was configured to create a network drive (S:).
 
-![Quota configuration](https://github.com/user-attachments/assets/abd0da25-cfb7-4aa6-b5bc-fd93d07f5d1b)
+![GPO Drive Mapping](https://github.com/user-attachments/assets/cbc27e0f-ed14-4581-9f71-85243db67f1f)
 
-On CLIENT-1, the shared folder appears as a network drive (S:). The properties show the total size and free space matching the quota.
+#### 11.3 Configure a Storage Quota
+Using **FSRM**, a quota was applied to the shared folder with the following settings:
+- **Limit:** 100 MB
+- **Type:** Hard quota (prevents further writes when limit is reached)
 
-![Shared folder on client](https://github.com/user-attachments/assets/4dd842b1-02b4-4ed3-a61a-309080beb7f2)
+![Creating Quota in FSRM](https://github.com/user-attachments/assets/abd0da25-cfb7-4aa6-b5bc-fd93d07f5d1b)
 
-In the "This PC" window, the S: drive is visible with the correct capacity and free space (100 MB total, 99.9 MB free).
+**File Screen Management (Optional):** File screens can be added to block specific file types; this step demonstrates the FSRM interface.
 
-![This PC showing S: drive](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
+![File Screen Management](https://github.com/user-attachments/assets/59e9e679-f3d4-4c98-91e5-0c0df39548e8)
 
-The client can access the share, and the quota effectively restricts storage usage.
+#### 11.4 Verify on Client Machine
+**Map Network Drive via GPO:** The Group Policy configured earlier automatically maps the shared folder as drive **S:** on client startup.
 
-Additional screenshots showing the environment:
+![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
 
-- **Quick Access view**  
-  ![Quick Access](https://github.com/user-attachments/assets/9ebca6eb-221b-438f-a8fa-9483560f930e)
-
-- **This PC with mounted drive**  
-  ![This PC](https://github.com/user-attachments/assets/75c41766-d78b-4677-9010-1f05114310d5)
-
-- **Recycle Bin and desktop**  
-  ![Desktop](https://github.com/user-attachments/assets/cbc27e0f-ed14-4581-9f71-85243db67f1f)
-
----
-
-## ✅ Conclusion
-
-Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
-
-- Virtualized servers and clients using VMware Workstation.
-- A Windows Server 2022 Domain Controller with Active Directory Domain Services.
-- DNS and DHCP services for automated network configuration.
-- NAT/RAS to provide internet access to internal clients.
-- A Windows 10 client joined to the domain, demonstrating real‑world authentication and resource access.
-- Centralized management via Group Policy Objects, showcasing the ability to enforce security settings and user configurations.
-- File server with quota management using File Server Resource Manager, illustrating storage governance.
-
-This project demonstrates practical skills in **system administration**, **networking**, **Active Directory management**, **group policy**, **file services**, and **virtualization**. It reflects my ability to plan, deploy, and maintain enterprise‑level IT services in a controlled environment, preparing me for real‑world challenges in IT support and infrastructure administration.
-
----
-
-*For any questions or further details, please feel free to reach out.*
+If needed, force an immediate update using:
