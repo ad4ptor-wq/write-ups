@@ -293,9 +293,12 @@ Using **FSRM**, a quota was applied to the shared folder with the following sett
 #### 11.4 Verify on Client Machine
 **Map Network Drive via GPO:** The Group Policy configured earlier automatically maps the shared folder as drive **S:** on client startup.
 
-![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
+![Mapped Drive in Explorer](https://github.com/user-attachments/assets/82956721-64f6-4cb9-bd73-10b3711ac0ec)
+
 
 If needed, force an immediate update using:
+gpupdate /force 
+
 ![gpupdate force](https://github.com/user-attachments/assets/67e9b6f5-b036-45f4-bec0-802829cb79ca)
 
 **Final Validation – Write Test:** Attempt to copy files into the share. Once the 100 MB limit is reached, further writes are blocked, confirming the hard quota functions as intended. Right‑click the mapped drive, select **Properties**, and observe the total capacity (100 MB) and free space. This confirms the quota is active.
