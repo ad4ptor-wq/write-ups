@@ -296,3 +296,28 @@ Using **FSRM**, a quota was applied to the shared folder with the following sett
 ![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
 
 If needed, force an immediate update using:
+![gpupdate force](https://github.com/user-attachments/assets/67e9b6f5-b036-45f4-bec0-802829cb79ca)
+
+**Final Validation – Write Test:** Attempt to copy files into the share. Once the 100 MB limit is reached, further writes are blocked, confirming the hard quota functions as intended. Right‑click the mapped drive, select **Properties**, and observe the total capacity (100 MB) and free space. This confirms the quota is active.
+
+![Final Confirmation](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
+
+---
+
+## ✅ Conclusion
+
+Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
+
+- Virtualized servers and clients using VMware Workstation.
+- A Windows Server 2022 Domain Controller with Active Directory Domain Services.
+- DNS and DHCP services for automated network configuration.
+- NAT/RAS to provide internet access to internal clients.
+- A Windows 10 client joined to the domain, demonstrating real‑world authentication and resource access.
+- Centralized management via Group Policy Objects, showcasing the ability to enforce security settings and user configurations.
+- File server with quota management using File Server Resource Manager, illustrating storage governance.
+
+This project demonstrates practical skills in **system administration**, **networking**, **Active Directory management**, **group policy**, **file services**, and **virtualization**. It reflects my ability to plan, deploy, and maintain enterprise‑level IT services in a controlled environment, preparing me for real‑world challenges in IT support and infrastructure administration.
+
+---
+
+*For any questions or further details, please feel free to reach out.*
