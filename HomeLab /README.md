@@ -284,65 +284,129 @@ These results confirm that the GPOs are correctly filtered and applied based on 
 
 ---
 
-# Lab 11: Configuring File Server and Quota Management
+# 🧪 Lab 11: Configuring File Server and Quota Management
 
-## Objective
-Set up a centralized file server on the Domain Controller (DC) and enforce disk usage limits using File Server Resource Manager (FSRM). This includes installing the necessary roles, creating a shared folder with appropriate permissions, configuring a storage quota, and verifying the setup from a client machine.
+## 📌 Objective
+The goal of this lab is to configure a centralized file server on a Domain Controller (DC) and enforce disk usage limits using **File Server Resource Manager (FSRM)**.
+
+This lab includes:
+- Installing required roles and features
+- Creating and sharing a folder
+- Configuring a storage quota
+- Mapping the network drive via Group Policy
+- Verifying functionality from a client machine
 
 ---
 
-## 11.1 Install File Server Role and FSRM
-Using **Server Manager**, the **File and Storage Services** role and the **File Server Resource Manager (FSRM)** feature were added. These tools enable quota management, file screening, and storage reporting.
+## ⚙️ 11.1 Install File Server Role and FSRM
+
+Using **Server Manager**, the following components were installed:
+
+- **File and Storage Services**
+- **File Server Resource Manager (FSRM)**
+
+These features enable:
+- Quota management
+- File screening
+- Storage reporting
 
 ![Installing File Server Role and FSRM](https://github.com/user-attachments/assets/10a0cd00-d116-4e42-b685-7dd73d8e26d6)
 
 ---
 
-## 11.2 Create a Shared Folder
-A folder was created at `C:\Shares\Shared` and shared as `\\DC\SHARED`.  
-**Share Permissions:** Domain Users are granted **Read/Write** access.
+## 📁 11.2 Create a Shared Folder
+
+A shared directory was created:
+
+- **Local Path:** `C:\Shares\Shared`
+- **Network Path:** `\\DC\SHARED`
+
+### 🔐 Share Permissions
+- **Domain Users** → Read/Write access
 
 ![Creating Shared Folder](https://github.com/user-attachments/assets/75c41766-d78b-4677-9010-1f05114310d5)
 
-### Verification – Hostname Check
-The server’s hostname is confirmed to be **DC**.
+---
+
+### 🖥️ Hostname Verification
+
+The server hostname was verified as:
+
+DC
 
 ![Hostname Verification](https://github.com/user-attachments/assets/e15aa565-f2e8-4a5e-b34a-4f30bc79c109)
 
-### Group Policy – Drive Mapping
-To automatically map the shared folder on client machines, a Group Policy Object (GPO) was configured to create a network drive (S:).
+---
+
+### 🔄 Group Policy – Drive Mapping
+
+A **Group Policy Object (GPO)** was configured to automatically map the shared folder as a network drive:
+
+- **Drive Letter:** `S:`
+- **Path:** `\\DC\SHARED`
+
+This ensures all domain users receive the mapped drive upon login.
 
 ![GPO Drive Mapping](https://github.com/user-attachments/assets/cbc27e0f-ed14-4581-9f71-85243db67f1f)
 
 ---
 
-## 11.3 Configure a Storage Quota
+## 📊 11.3 Configure Storage Quota
+
 Using **FSRM**, a quota was applied to the shared folder with the following settings:
 
-- **Limit:** 100 MB  
-- **Type:** Hard quota (prevents further writes when limit is reached)
+- **Quota Limit:** 100 MB
+- **Quota Type:** Hard quota (blocks further writes when the limit is reached)
 
 ![Creating Quota in FSRM](https://github.com/user-attachments/assets/abd0da25-cfb7-4aa6-b5bc-fd93d07f5d1b)
 
-### File Screen Management (Optional)
-File screens can be added to block specific file types; this step demonstrates the FSRM interface.
+---
+
+### 🚫 File Screening (Optional)
+
+FSRM also allows configuration of file screens to block specific file types (e.g., `.exe`, `.mp3`).
 
 ![File Screen Management](https://github.com/user-attachments/assets/59e9e679-f3d4-4c98-91e5-0c0df39548e8)
 
 ---
 
-## 11.4 Verify on Client Machine
+## 🖥️ 11.4 Verification on Client Machine
 
-### Map Network Drive via GPO
-The Group Policy configured earlier automatically maps the shared folder as drive **S:** on client startup.  
+### 🔗 Network Drive Mapping
+
+The shared folder is automatically mapped via GPO as:
+
+S:\
+
 ![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
 
-If needed, force an immediate update using:
-```cmd
+---
+
+### ⚡ Force Group Policy Update
+
+If the drive is not mapped immediately, run:
+
 gpupdate /force
 
+<img width="1024" height="768" alt="gpupdate" src="https://github.com/user-attachments/assets/67e9b6f5-b036-45f4-bec0-802829cb79ca" />
 
 ---
+
+### ✅ Final Validation
+
+1. Copy files to the shared folder
+2. When the total size reaches **100 MB**, further writes are blocked
+3. This confirms that the **hard quota is enforced**
+
+To verify:
+- Right-click the mapped drive → **Properties**
+- Check total capacity and available space
+
+![Final Confirmation](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
+
+---
+
+
 ## ✅ Conclusion
 
 Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
