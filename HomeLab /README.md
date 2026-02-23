@@ -332,23 +332,25 @@ File screens can be added to block specific file types; this step demonstrates t
 ---
 
 ## 11.4 Verify on Client Machine
-On client **CLIENT-1**, the shared folder appears as drive **S:**. The properties dialog shows the total capacity (100 MB) and free space, confirming the quota is enforced.
+1. **Map Network Drive via GPO:**  
+   The Group Policy configured earlier automatically maps the shared folder as drive **S:** on client startup.  
+   *If needed, force an immediate update using:*  
+   `gpupdate /force`
 
-![Client Drive Properties](https://github.com/user-attachments/assets/9ebca6eb-221b-438f-a8fa-9483560f930e)
+2. **Confirm Mapped Drive:**  
+   On client **CLIENT-1**, open File Explorer to verify the presence of drive **S:**.
 
-**Additional Client Verification:**
+   ![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
 
-- The mapped drive is visible in File Explorer.
+3. **Check Quota Enforcement:**  
+   Right-click the mapped drive, select **Properties**, and observe the total capacity (100 MB) and free space. This confirms the quota is active.
 
-![Mapped Drive in Explorer](https://github.com/user-attachments/assets/aff45b9f-4de2-4d3d-9709-9af936bd64c9)
+   ![Client Drive Properties](https://github.com/user-attachments/assets/9ebca6eb-221b-438f-a8fa-9483560f930e)
 
-- A file copy test confirms that the quota works as expected: once the 100 MB limit is reached, further writes are blocked.
+4. **Final Validation – Write Test:**  
+   Attempt to copy files into the share. Once the 100 MB limit is reached, further writes are blocked, confirming the hard quota functions as intended.
 
-![Quota Enforcement Test](https://github.com/user-attachments/assets/4dd842b1-02b4-4ed3-a61a-309080beb7f2)
-
-- Final confirmation of successful access and quota enforcement.
-
-![Final Confirmation](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
+   ![Final Confirmation](https://github.com/user-attachments/assets/f935e5b7-69b6-46b6-8f16-22a6e55ddaec)
 
 ---
 
