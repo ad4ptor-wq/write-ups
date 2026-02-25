@@ -6,7 +6,7 @@ The project not only showcases my technical expertise in IT infrastructure manag
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 - [Technologies & Requirements](#technologies--requirements)
 - [Prerequisites](#prerequisites)
 - [Step‑by‑Step Configuration](#step‑by‑step-configuration)
@@ -25,7 +25,7 @@ The project not only showcases my technical expertise in IT infrastructure manag
 
 ---
 
-## 🛠️ Technologies & Requirements
+##  Technologies & Requirements
 
 | Component                | Source / Download Link                                                                                 |
 |--------------------------|--------------------------------------------------------------------------------------------------------|
@@ -37,14 +37,14 @@ The project not only showcases my technical expertise in IT infrastructure manag
 
 ---
 
-## 📋 Prerequisites
+##  Prerequisites
 - A physical machine capable of running multiple VMs (at least 8 GB RAM, 50 GB free disk space, modern CPU with virtualization support).
 - Basic understanding of networking and Windows Server administration.
 - The ISO files for Windows Server 2022 and Windows 10.
 
 ---
 
-## 🔧 Step‑by‑Step Configuration
+##  Step‑by‑Step Configuration
 
 ### 1. Create Virtual Machines in VMware Workstation
 
@@ -307,7 +307,7 @@ gpupdate /force
 
 ---
 
-## ✅ Conclusion
+##  Conclusion
 
 Through this hands‑on project, I successfully designed and implemented a fully functional IT infrastructure homelab that includes:
 
