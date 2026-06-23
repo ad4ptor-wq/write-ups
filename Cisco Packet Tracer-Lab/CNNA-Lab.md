@@ -1,13 +1,15 @@
+<img width="1920" height="1017" alt="PacketTracer_j2pNT8QxFU" src="https://github.com/user-attachments/assets/ba9fc8a5-1404-4c1e-bf81-e918ab022ed2" />
+
 
 # CCNA Enterprise Network Lab - Cisco Packet Tracer
 
-## 📌 Description
+##  Description
 
 Enterprise network topology created in Cisco Packet Tracer for CCNA practice.
 
 The lab includes routing, switching, VLANs, wireless network, IP phones and server infrastructure.
 
-## 🛠 Technologies & Protocols Implemented
+##  Technologies & Protocols Implemented
 
 - VLAN (Network Segmentation)
 - Inter-VLAN Routing
@@ -26,7 +28,7 @@ The lab includes routing, switching, VLANs, wireless network, IP phones and serv
 - VoIP (IP Phones)
 - IPv4 Addressing & Subnetting
 
-## 🏢 Network Design
+##  Network Design
 
 - Core Layer
 - Distribution Layer
@@ -34,7 +36,7 @@ The lab includes routing, switching, VLANs, wireless network, IP phones and serv
 - Multiple Office Networks
 - Redundant Switch Links
 
-## 🧪 Testing
+##  Testing
 
 Verified:
 - Device connectivity with Ping
@@ -43,10 +45,9 @@ Verified:
 - DHCP address assignment
 - Network troubleshooting
 
-## 💻 Software
+##  Software
 
 Cisco Packet Tracer
 
-## 📂 File
 
-`CCNA_Lab.pkt`
+
